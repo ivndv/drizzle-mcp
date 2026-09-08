@@ -2,6 +2,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { Hono } from "hono";
 import { z } from "zod";
+import { renderLandingPage } from "./views/landing.js";
 
 // Tipos para la documentación indexada
 export interface DrizzleDoc {
@@ -362,45 +363,10 @@ app.post("/refresh", async (c) => {
 	});
 });
 
-// Página de inicio informativa
+// Renderiza la página de aterrizaje modularizada
 app.get("/", (c) => {
-	return c.html(`
-		<!DOCTYPE html>
-		<html>
-		<head>
-			<title>Drizzle ORM MCP Server</title>
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<style>
-				body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #222; }
-				h1 { color: #0070f3; }
-				code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
-				pre { background: #f4f4f4; padding: 12px; border-radius: 6px; overflow-x: auto; }
-				.badge { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 4px 8px; border-radius: 4px; font-weight: 600; font-size: 0.85em; }
-			</style>
-		</head>
-		<body>
-			<h1>⚡ Drizzle ORM MCP Server</h1>
-			<p><span class="badge">Streamable HTTP / Edge Worker</span></p>
-			<p>Servidor MCP remoto para consultar la documentación oficial completa y actualizada de Drizzle ORM.</p>
-			
-			<h3>Herramientas disponibles:</h3>
-			<ul>
-				<li><code>search_docs(query, dialect?, limit?)</code>: Búsqueda de texto y dialecto con extractos contextuales.</li>
-				<li><code>get_doc(path)</code>: Obtiene el markdown completo de una página o guía.</li>
-				<li><code>list_sections()</code>: Lista las categorías y conteo de documentos indexados.</li>
-			</ul>
-
-			<h3>Configuración MCP:</h3>
-			<pre>{
-  "mcpServers": {
-    "drizzle-orm": {
-      "serverUrl": "${new URL(c.req.url).origin}/mcp"
-    }
-  }
-}</pre>
-		</body>
-		</html>
-	`);
+	const origin = new URL(c.req.url).origin;
+	return c.html(renderLandingPage(origin));
 });
 
 export default app;
