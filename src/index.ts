@@ -328,7 +328,6 @@ app.all("/mcp", async (c) => {
 		method: req.method,
 		headers,
 		body: req.body,
-		// @ts-expect-error duplex exists in standard RequestInit for streaming
 		duplex: "half",
 	});
 
