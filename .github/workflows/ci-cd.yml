@@ -3,9 +3,9 @@ name: Drizzle MCP CI/CD
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   pull_request:
-    branches: [main]
+    branches: [main, develop]
 
 # Cancela ejecuciones previas del mismo ref, excepto deploys en main
 concurrency:
