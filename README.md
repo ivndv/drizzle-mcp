@@ -40,7 +40,7 @@ Conecta el cliente MCP al endpoint remoto:
   "mcpServers": {
     "drizzle": {
       "type": "http",
-      "url": "https://drizzle-mcp.mgdc.site/mcp"
+      "url": "https://drizzle-mcp.liuma.app/mcp"
     }
   }
 }
@@ -56,7 +56,7 @@ Conecta el cliente MCP al endpoint remoto:
 
 ## Despliegue
 
-Desplegado en Cloudflare Workers: [drizzle-mcp](https://drizzle-mcp.mgdc.site/)
+Desplegado en Cloudflare Workers: [drizzle-mcp](https://drizzle-mcp.liuma.app/)
 
 ## Licencia
 

@@ -6,7 +6,7 @@
 	"compatibility_flags": ["nodejs_compat"],
 	"routes": [
 		{
-			"pattern": "drizzle-mcp.mgdc.site",
+			"pattern": "drizzle-mcp.liuma.app",
 			"custom_domain": true
 		}
 	],
