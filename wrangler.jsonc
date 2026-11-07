@@ -11,9 +11,27 @@
 		}
 	],
 	"observability": {
+		// Interruptor general de observabilidad del Worker
+		"enabled": false,
+		// Fracción de requests registradas; 1 = todas
+		"head_sampling_rate": 1,
+		// Quita los query strings de las URLs en logs y trazas
+		"redact_query_string": false,
 		"logs": {
 			"enabled": true,
-			"invocation_logs": true
+			"head_sampling_rate": 1,
+			"invocation_logs": true,
+			"persist": true
+		},
+		// Spans de cada request: fetch salientes, bindings y DO
+		"traces": {
+			"enabled": true,
+			"head_sampling_rate": 1,
+			"persist": true
+		},
+		"issues": {
+			// Agrupa errores e invocaciones fallidas
+			"enabled": true
 		}
 	}
 }
